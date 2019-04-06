@@ -22,3 +22,7 @@ extra-package-dbs: []
 ghc-options:
   hscolour: -w 
 
+nix:
+  enable: true
+  packages: [ z3 ]
+
