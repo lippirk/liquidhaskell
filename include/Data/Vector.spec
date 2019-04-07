@@ -4,7 +4,6 @@ import GHC.Base
 
 data variance Data.Vector.Vector covariant
 
-
 measure vlen    :: forall a. (Data.Vector.Vector a) -> Int
 
 invariant       {v: Data.Vector.Vector a | 0 <= vlen v } 
@@ -27,7 +26,10 @@ head :: forall a. {xs:Data.Vector.Vector a | 0 < vlen xs} -> a
 
 last :: forall a. {xs:Data.Vector.Vector a | 0 < vlen xs} -> a
 
-iscanl' :: (Int -> a -> b -> a) -> a -> xs:(Data.Vector.Vector b) -> {ys:Data.Vector.Vector a | 1 + vlen xs == vlen ys}
+iscanl' :: (Nat -> a -> b -> a)
+        -> a
+        -> xs:(Data.Vector.Vector b)
+        -> {ys:Data.Vector.Vector a | 1 + vlen xs == vlen ys}
 
 postscanl' :: (a -> b -> a) -> a -> xs:(Data.Vector.Vector b) -> {ys:Data.Vector.Vector a | vlen xs == vlen ys}
 
@@ -39,3 +41,7 @@ splitAt
        )
 
 drop :: n:Nat -> xs:(Data.Vector.Vector a) -> {ys:Data.Vector.Vector a | vlen ys == vlen xs - n}
+
+(++) :: xs:Data.Vector.Vector a
+     -> ys:Data.Vector.Vector a
+     -> {zs:Data.Vector.Vector a | vlen zs = vlen xs + vlen ys}
