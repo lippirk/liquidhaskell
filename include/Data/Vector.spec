@@ -35,7 +35,7 @@ postscanl' :: (a -> b -> a) -> a -> xs:(Data.Vector.Vector b) -> {ys:Data.Vector
 
 splitAt
     :: n  : Nat
-    -> xs : {xs: Data.Vector.Vector a | 0 <= vlen xs && vlen xs < n}
+    -> xs : {xs: Data.Vector.Vector a | n < vlen xs}
     -> ( { l : Data.Vector.Vector a | vlen l == n }
        , { r : Data.Vector.Vector a | vlen r == vlen xs - n }
        )
